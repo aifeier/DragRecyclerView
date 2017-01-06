@@ -25,6 +25,8 @@ public class RecyclerDragAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     private Context context;
     private List<String> list;
 
+    private OnStartDragListener mOnStartDragListener;
+
     public RecyclerDragAdapter(Context ct) {
         context = ct;
         list = new ArrayList<>();
@@ -57,6 +59,8 @@ public class RecyclerDragAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (mOnStartDragListener != null)
+                    mOnStartDragListener.onStartDrag(holder);
                 return false;
             }
         });
@@ -65,6 +69,10 @@ public class RecyclerDragAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     public void setmOnItemClickListener(OnItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;
+    }
+
+    public void setmOnStartDragListener(OnStartDragListener mOnStartDragListener) {
+        this.mOnStartDragListener = mOnStartDragListener;
     }
 
     @Override

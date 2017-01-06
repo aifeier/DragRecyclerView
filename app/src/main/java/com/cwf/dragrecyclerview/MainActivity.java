@@ -34,11 +34,18 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         titlerecyclerview.setLayoutManager(gridLayoutManager);
         recyclerDragAdapter = new RecyclerDragAdapter(this);
+
         titlerecyclerview.setAdapter(recyclerDragAdapter);
-        ItemTouchHelper.Callback itemTouchHelperCallback =
+        SimpleItemTouchHelperCallback simpleItemTouchHelperCallback =
                 new SimpleItemTouchHelperCallback(recyclerDragAdapter, gridLayoutManager);
-        ItemTouchHelper helper = new ItemTouchHelper(itemTouchHelperCallback);
+        final ItemTouchHelper helper = new ItemTouchHelper(simpleItemTouchHelperCallback);
         helper.attachToRecyclerView(titlerecyclerview);
+        recyclerDragAdapter.setmOnStartDragListener(new OnStartDragListener() {
+            @Override
+            public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+                helper.startDrag(viewHolder);
+            }
+        });
 
         dragAdapter = new RecyclerDragAdapter(this);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));

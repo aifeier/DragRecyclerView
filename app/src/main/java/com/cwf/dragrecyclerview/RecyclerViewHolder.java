@@ -2,6 +2,7 @@ package com.cwf.dragrecyclerview;
 
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;
@@ -13,7 +14,7 @@ import android.widget.TextView;
  * @email 237142681@qq.com
  */
 
-public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+public class RecyclerViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder{
     private SparseArray<View> mViews;//存储item中的子view
 
     public RecyclerViewHolder(View itemView) {
@@ -65,4 +66,13 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    @Override
+    public void onItemSelected() {
+
+    }
+
+    @Override
+    public void onItemClear() {
+
+    }
 }
